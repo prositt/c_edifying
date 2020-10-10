@@ -1,8 +1,10 @@
+#include <stdio.h>
+
 /* Tracks date and time of coding */
 
 int main(){
 
-	printf("Hello world!")
+	printf("Hello world!\n");
 
-return 0;
+return(0);
 }
