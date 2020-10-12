@@ -10,7 +10,7 @@ int main(){
 
 	printf("Hello world!\n\n");
 
-	printf("X -> %i\n", get_date());
+	printf("X -> %i\n\n", get_date());
 	return(0);
 }
 
