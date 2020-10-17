@@ -5,14 +5,7 @@
 int main(){
 
 	printf("Hello world!\n\n");
-	printf("Now featuring header...\n");
-
-	printf("Wanting user input...\n");
-
-	char star[100];
-	printf( "Enter task: " );
-	scanf("%s", star );
-	printf( "String: %s\n", star);
+	printf("Get user input\n");
 
 	c = get_input();
 	printf("C-> %c", c);
@@ -30,7 +23,7 @@ int get_date(){
 /* Get input from user */
 const char* get_input(){
 	char str[100];
-	printf( "Enter task: " );
+	printf( "Enter task2: " );
 	scanf("%s", str );
 	printf( "String: %s\n", str);
 	return str;
