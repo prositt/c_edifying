@@ -5,10 +5,18 @@
 int main(){
 
 	printf("Hello world!\n\n");
-	printf("Get user input\n");
+	
+	char* string = "Initiated"; 
+	printf("String status: %s\n", string);
+	printf("String size: %ld\n\n", sizeof(string));	
+	
+	buf = string;
+	printf("Buffer status: %s\n", buf);
+	printf("Buffer size: %ld\n\n", sizeof(buf));
 
-	c = get_input();
-	printf("C-> %c", c);
+	printf("Get user input...\n");
+	get_input(&buf, sizeof(buf));
+	printf("Buffer in main: %s \n\n", buf);
 
 	return(0);
 }
@@ -21,10 +29,22 @@ int get_date(){
 }
 
 /* Get input from user */
-const char* get_input(){
-	char str[100];
-	printf( "Enter task2: " );
+int get_input(char* buf, int buf_size){
+	char str[250];
+	char* str_ptn;
+
+	printf( "Enter input: " );
 	scanf("%s", str );
 	printf( "String: %s\n", str);
-	return str;
+	
+	str_ptn = str;
+
+	if (sizeof(str_ptn) > buf_size){
+		printf("Size of string(%ld) is larger than buffer(%ld)\n", sizeof(str_ptn), sizeof(buf));
+		return 1;
+	}
+	*buf = str_ptn;
+	printf("Buffer is now: %s\n", buf);
+	printf("Buffer size is now: %s\n\n", sizeof(buf));
+	return 0;
 }

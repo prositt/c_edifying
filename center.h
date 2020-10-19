@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <string.h>
 
 int get_date();
-const char* get_input();
+int get_input();
 
 int x;
-char c;
+char* buf;
