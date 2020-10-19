@@ -2,7 +2,8 @@
 #include <string.h>
 
 int get_date();
-int get_input(int* ptr, size_t size);
+int get_input(int* ptr);
 
-int x;
-char* buf;
+int int_info(int* ptr);
+
+int dbg;

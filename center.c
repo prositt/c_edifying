@@ -10,18 +10,11 @@ int main(){
 	int* nbr_ptr;
 
 	nbr_ptr = &nbr;
-
 	
-	printf("nbr value: %i\n", nbr);
-	printf("nbr adress: %ld\n", &nbr);
-	printf("nbr size: %ld\n\n", sizeof(nbr));	
-	
-	printf("nbr_ptr value: %i\n", *nbr_ptr);
-	printf("nbr_ptr adress: %ld\n", nbr_ptr);
-	printf("nbr_ptr size: %ld\n\n", sizeof(nbr_ptr));
+	int_info(nbr_ptr);
 
 	printf("Get user input...\n");
-	switch(get_input(nbr_ptr, sizeof(nbr_ptr))){
+	switch(get_input(nbr_ptr)){
 		case 0:
 			printf("\nSuccess\n");
 			break;
@@ -31,22 +24,9 @@ int main(){
 			break;
 	}
 
-	switch(get_input(nbr, sizeof(nbr))){
-		case 0:
-			printf("\nSuccess\n");
-			break;
-
-		case 1:
-			printf("\nFail!\n");
-			break;
-	}
-	printf("nbr_ptr value is now: %i\n", *nbr_ptr);
-	printf("nbr_ptr adress: %i\n", nbr_ptr);
-	printf("nbr_ptr size is now: %ld\n\n", sizeof(nbr_ptr));
+	int_info(nbr_ptr);
 
 	printf("nbr value is now: %i\n", nbr);
-	printf("nbr adress: %i\n",  &nbr);
-	printf("nbr size is now: %ld\n\n", sizeof(&nbr));
 
 	return(0);
 }
@@ -59,33 +39,34 @@ int get_date(){
 }
 
 /* Get input from user */
-int get_input(int* ptr, size_t size){
+int get_input(int* ptr){
 	int input;
 
-	printf("ptr value is now: %i\n", *ptr);
-	printf("ptr adress: %i\n", ptr);
-	printf("ptr size is now: %ld\n\n", sizeof(ptr));
-
+	int_info(ptr);
 	printf( "Enter input: ");
 	scanf("%i", &input );
 	printf( "Input: %i\n", input);
 	
-
-	if (sizeof(input) > size){
-		printf("Size of input(%ld) is larger than nbr(%ld)\n\n", sizeof(input), sizeof(ptr));
+	if (sizeof(input) > sizeof(*ptr)){
+		printf("Size of input(%ld) is larger than nbr(%ld)\n\n", sizeof(input), sizeof(*ptr));
 		return 1;
 	} else {
-		printf("Size OK, %ld <= %ld\n\n", sizeof(input), sizeof(size));
+		printf("Size OK, %ld <= %ld\n\n", sizeof(input), sizeof(*ptr));
 	}
 
-	printf("ptr value is now: %i\n", *ptr);
-	printf("ptr adress: %i\n", ptr);
-	printf("ptr size is now: %ld\n\n", sizeof(ptr));
+	int_info(ptr);
 
-	printf("...pointer assigned...\n\n");
 	*ptr = input;
-	printf("ptr value is now: %i\n", *ptr);
-	printf("ptr adress: %i\n", ptr);
-	printf("ptr size is now: %ld\n\n", sizeof(ptr));
+	int_info(ptr);
+
 	return 0;
+}
+
+int int_info(int* ptr){
+	if(dbg){
+		printf("ptr value: %i\n", *ptr);
+		printf("ptr adress: %i\n", ptr);
+		printf("ptr value size: %ld\n\n", sizeof(*ptr));
+		return 0;
+	}
 }
