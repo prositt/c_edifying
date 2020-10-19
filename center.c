@@ -9,29 +9,17 @@ int main(){
 
 	printf("Hello world!\n\n");
 	
+	// Test arrays
 	int nbr = 10;
 	int* nbr_ptr;
 
-	nbr_ptr = &nbr;
-	
-	int_info(nbr_ptr);
+	int a_nbr [10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-	printf("Get user input...\n");
-	switch(get_input(nbr_ptr)){
-		case 0:
-			printf("\nSuccess\n");
-			break;
+	print_arr(a_nbr);
+	get_input(a_nbr, 2);
+	print_arr(a_nbr);
 
-		case 1:
-			printf("\nFail!\n");
-			break;
-	}
 
-	int_info(nbr_ptr);
-
-	printf("nbr value is now: %i\n", nbr);
-
-	printf("X -> %i\n\n", get_date());
 	return(0);
 }
 
@@ -46,22 +34,20 @@ int get_date(){
 }
 
 /* Get input from user */
-int get_input(int* ptr){
+int get_input(int* ptr, int pos){
 	int input;
 
 	int_info(ptr);
 	printf( "Enter input: ");
-	scanf("%i", &input );
-	printf( "Input: %i\n", input);
+	scanf("%i %i", &pos, &input );
+	printf( "Pos %i, input: %i\n", pos, input);
 	
-	if (sizeof(input) > sizeof(*ptr)){
-		printf("Size of input(%ld) is larger than nbr(%ld)\n\n", sizeof(input), sizeof(*ptr));
+	if (pos > sizeof(ptr)){
+		printf("Outside range, %ld > %ld\n\n", pos, sizeof(*ptr));
 		return 1;
 	} else {
-		printf("Size OK, %ld <= %ld\n\n", sizeof(input), sizeof(*ptr));
+		printf("Size OK, %ld <= %ld\n\n", pos, sizeof(*ptr));
 	}
-
-	int_info(ptr);
 
 	*ptr = input;
 	int_info(ptr);
@@ -76,4 +62,12 @@ int int_info(int* ptr){
 		printf("ptr value size: %ld\n\n", sizeof(*ptr));
 		return 0;
 	}
+}
+
+int print_arr(int arr[]){
+	for (int i = sizeof(arr)+1; i >= 0; i--){
+		printf("%i, ", arr[i]);
+	}
+	printf("\n");
+	return 0;
 }

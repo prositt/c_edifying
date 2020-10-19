@@ -8,7 +8,8 @@
 
 //Functions
 int get_date();
-int get_input(int* ptr);
+int get_input(int* ptr, int pos);
+int print_arr(int arr[]);
 
 int int_info(int* ptr);
 int dbg;
