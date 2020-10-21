@@ -7,19 +7,11 @@ int main(){
 	time_t t = time(NULL);
 	tm = *localtime(&t);
 
+
+	
 	printf("Hello world!\n\n");
 	
-	// Test arrays
-	int nbr = 10;
-	int* nbr_ptr;
-
-	int a_nbr [10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-	print_arr(a_nbr);
-	get_input(a_nbr);
-	print_arr(a_nbr);
-
-
+	log_mood();
 	return(0);
 }
 
@@ -70,5 +62,20 @@ int print_arr(int arr[]){
 		printf("%i, ", arr[i]);
 	}
 	printf("\n");
-	return 0;
+}
+
+int log_mood(){
+	FILE* file;
+	file = fopen("./doc/log.txt", "a");
+	fprintf(file, "Date: %d.%s.%d\t", tm.tm_year+1900, months[tm.tm_mon-1], tm.tm_mday);
+	fprintf(file, "Mood: %s\n", str_input());
+	fclose(file);
+}
+
+char* str_input(){
+	static char str[255];
+	printf("Enter mood: (single word)\n");
+	scanf("%s", &str);
+	printf("%s\n", str);
+	return str;
 }

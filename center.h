@@ -10,6 +10,8 @@
 int get_date();
 int get_input(int* ptr);
 int print_arr(int arr[]);
+int log_mood();
+char* str_input();
 
 int int_info(int* ptr);
 int dbg;
