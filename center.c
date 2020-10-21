@@ -16,7 +16,7 @@ int main(){
 	int a_nbr [10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 	print_arr(a_nbr);
-	get_input(a_nbr, 2);
+	get_input(a_nbr);
 	print_arr(a_nbr);
 
 
@@ -34,8 +34,9 @@ int get_date(){
 }
 
 /* Get input from user */
-int get_input(int* ptr, int pos){
+int get_input(int* ptr){
 	int input;
+	int pos;
 
 	int_info(ptr);
 	printf( "Enter input: ");
@@ -49,7 +50,7 @@ int get_input(int* ptr, int pos){
 		printf("Size OK, %ld <= %ld\n\n", pos, sizeof(*ptr));
 	}
 
-	*ptr = input;
+	ptr[pos] = input;
 	int_info(ptr);
 
 	return 0;
