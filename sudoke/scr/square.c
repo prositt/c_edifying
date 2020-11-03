@@ -10,4 +10,19 @@ int solveSquare(Square * square){
             UNSOLVED--;
         }
     }
+    printf("Solved ->\t");
+    printSquare(square);
+    
+}
+
+void printSquare(Square * square){
+    int x;
+    printf("[%d][%d] \t", square->row, square->col);    
+    printf("Number: %d\t", square->number);
+    printf("Solvable: %d\t", square->solveable);
+    printf("Possible:[");
+    for (x = 0; x<9; x++){
+        printf(" %d, ", square->possible[x]);
+    }
+    printf("]\n");
 }
