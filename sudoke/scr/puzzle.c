@@ -5,7 +5,7 @@ Square *** setUpPuzzle(int ** puzzle){
     Square *** sudoku;
     Box ** boxes;
     int i, j, x;
-    int currentBox;
+    int currentBox = 0;
 
     sudoku = (Square***)malloc(sizeof(Square**)*9);
     boxes = createBoxes();
@@ -37,7 +37,19 @@ Square *** setUpPuzzle(int ** puzzle){
             for (x=0; x < SIZE_ROWS; x++){
                 sudoku[i][j]->possible[x] = 0;
             }
+
+            if (j == 2){
+                currentBox++;
+            }
+            if (j == 5){
+                currentBox++;
+            }
         }
+        currentBox -= 2;
+        if ( i == 2)
+            currentBox = 3;
+        if ( i == 5)
+            currentBox = 6;
     }
 
     /* loop through rows*/
@@ -47,9 +59,10 @@ Square *** setUpPuzzle(int ** puzzle){
         for (j = 0; j < SIZE_COLS; j++){
 
             if(sudoku[i][j]->number != 0){
-            sudoku[i][j]->solveable = 0;
-            updateSudoku(sudoku, i, j);
-            UNSOLVED--;
+                sudoku[i][j]->solveable = 0;
+                updateSudoku(sudoku, i, j);
+                updateBoxes(sudoku, i, j);
+                UNSOLVED--;
             }
         }
 
@@ -89,7 +102,7 @@ int checkPuzzle(Square *** sudoku){
             if(sudoku[i][j]->solveable == 1){
                 printf("Solved: %d, %d\n", i, j);  
                 solveSquare(sudoku[i][j]);
-                updateSudSolvedoku(sudoku, i, j);
+                updateSudoku(sudoku, i, j);
             }
         }
     }

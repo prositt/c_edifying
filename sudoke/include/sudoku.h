@@ -41,7 +41,8 @@ int checkPuzzle(Square *** sudoku);
 int updateSudoku(Square *** sudoku, int row, int col);
 
 /* box functions*/
-int createBoxes();
+Box ** createBoxes();
+int updateBoxes(Square *** sudoku, int row, int col);
 
 
 #endif
