@@ -45,9 +45,9 @@ Sudoku * setUpPuzzle(int ** puzzle){
             sudoku[i][j]->box = boxes[currentBox];
             boxes[currentBox]->numbers++;
 
-            //for (x=0; x < SIZE_ROWS; x++){
-            //    sudoku[i][j]->possible[x] = 0;
-            //}
+            for (x=0; x < SIZE_ROWS; x++){
+                sudoku[i][j]->possible[x] = 0;
+            }
 
             if (j == 2){
                 currentBox++;
@@ -71,12 +71,10 @@ Sudoku * setUpPuzzle(int ** puzzle){
         for (j = 0; j < SIZE_COLS; j++){
 
             if(sudoku[i][j]->number != 0){
-
                 sudoku[i][j]->solveable = 0;
                 updateSudoku(sudoku, i, j);
                 updateBoxes(sudoku, i, j);
                 UNSOLVED--;
-
             }
 
         }
@@ -125,7 +123,8 @@ int checkPuzzle(Square *** sudoku, Box ** boxes){
             }
         }
     }
-    //boxSingles(sudoku, boxes);
+    boxSingles(sudoku, boxes);
+    return 1;
 }
 
 int ** createPuzzle(){

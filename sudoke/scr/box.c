@@ -1,46 +1,49 @@
 #include "sudoku.h"
 
+
 int boxSingles(Square *** sudoku, Box ** boxes){
     
     int i, j, x;
     int count;
     int temp;
 
-    /* loop through boxes */
-    for (i = 0; i < 9; i++){
-        /* loop through possible array */
-        for (j = 0; j < 9; j++){
-            
-            count = 0;
-            /* loop through squares */
-            for (x = 0; i < 9; x++)
-            {
-                if(boxes[i]->squares[x]->number !=0){
-                    continue;
-                }
+     /* loop through boxes */
+     for (i = 0; i < 9; i++){
+         /* loop through possible array */
+         for (j = 0; j < 9; j++){
+             count = 0;
+             /* loop through squares */
+             for (x = 0; x < 9; x++){
+                 if(boxes[i]->squares[x]->number !=0){
+                     continue;
+                 }
 
-                if(boxes[i]->squares[x]->possible[j] == 0){
-                    count++;
-                    temp = x;
+                 if(boxes[i]->squares[x]->possible[j] == 0){
+                     count++;
+                     temp = x;
 
-                }
+                 }
 
-                if (count == 2){
-                    break;
-                }
-            }
-            if(count == 1){
-                boxes[i]->squares[temp]->number = j+1;
-                UNSOLVED--;
-                boxes[i]->squares[temp]->solveable = 0;
-                updateSudoku(sudoku, boxes[i]->squares[temp]->row, boxes[i]->squares[temp]->col);
+                 if (count == 2){
+                     break;
+                 }
+             }
+             if(count == 1){
+                 boxes[i]->squares[temp]->number = j+1;
+                 printf("Solved -> \t");
+                 printSquare(boxes[i]->squares[temp]);
+                 UNSOLVED--;
+                 boxes[i]->squares[temp]->solveable = 0;
+                 updateSudoku(sudoku, boxes[i]->squares[temp]->row, boxes[i]->squares[temp]->col);
             }   
         }   
     }
+    return 1;
 }
 
-Box ** createBoxes(){
 
+Box ** createBoxes(){
+    printf("Boxes created\n");
     int x, y;
     Box ** boxes;
     boxes = malloc(sizeof(Box*)*9);
