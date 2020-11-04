@@ -34,16 +34,18 @@ int boxSingles(Square *** sudoku, Box ** boxes){
                  printSquare(boxes[i]->squares[temp]);
                  UNSOLVED--;
                  boxes[i]->squares[temp]->solveable = 0;
+
                  updateSudoku(sudoku, boxes[i]->squares[temp]->row, boxes[i]->squares[temp]->col);
+
+                return 1;
             }   
         }   
     }
-    return 1;
+    return 0;
 }
 
 
 Box ** createBoxes(){
-    printf("Boxes created\n");
     int x, y;
     Box ** boxes;
     boxes = malloc(sizeof(Box*)*9);

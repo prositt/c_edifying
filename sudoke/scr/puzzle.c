@@ -120,11 +120,14 @@ int checkPuzzle(Square *** sudoku, Box ** boxes){
                 solveSquare(sudoku[i][j]);
                 updateSudoku(sudoku, i, j);
                 updateBoxes(sudoku, i, j);
+                return 1;
             }
         }
     }
-    boxSingles(sudoku, boxes);
-    return 1;
+    if (boxSingles(sudoku, boxes)){
+        return 1;
+    }
+    return checkRows(sudoku, boxes);
 }
 
 int ** createPuzzle(){

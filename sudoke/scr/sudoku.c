@@ -6,6 +6,7 @@ int SIZE_COLS = 9;
 
 int main(){
     int ** puzzle;
+    int progress = 0;
     Sudoku * sudoku;
     //Square *** squares;
 
@@ -15,9 +16,16 @@ int main(){
 
     printPuzzle(sudoku->squares);
 
-    checkPuzzle(sudoku->squares, sudoku->boxes);
-    checkPuzzle(sudoku->squares, sudoku->boxes);
-    checkPuzzle(sudoku->squares, sudoku->boxes);
+    while(UNSOLVED > 0){
+        progress  = checkPuzzle(sudoku->squares, sudoku->boxes);
+
+        if(progress == 0){
+            printf("Failed to solve puzzle :(\n");
+            break;
+        }
+    }
+
+
 
     printf("\n\n");
 
